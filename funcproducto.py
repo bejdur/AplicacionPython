@@ -8,7 +8,7 @@ def valor_dolar():
     return dolar_actual
 def ingresar_producto(lista,nombre,categoria,precio):
     dolar= valor_dolar()
-    preusd= round(precio/dolar)
+    preusd= round(precio/dolar,2)
     producto= { "nombre": nombre,
                "categoria": categoria,
                "precio clp": precio,
