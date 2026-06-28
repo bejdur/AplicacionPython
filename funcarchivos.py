@@ -9,4 +9,4 @@ def cargar_datos():
      with open("archivo.json", "r", encoding="utf-8") as i:
          return json.load(i)
     except FileNotFoundError:
-       print("No se encontró un archivo disponible")
+        return []
