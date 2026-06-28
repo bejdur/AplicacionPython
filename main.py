@@ -1,10 +1,11 @@
 from funcproducto import *
-
+from funcarchivos import *
+from eliminarregistro import *
 
 def main():
     prodregistrados=[]
     while True:
-        print("\nMENU DE REGISTRAR COMPRAS\n1-Añadir artículo\n2-Ver productos registrados\n3-Eliminar artículo\n4-Continuar sesión\n5-Salir y guardar datos\n")
+        print("\nMENU DE REGISTRAR COMPRAS\n1-Añadir artículo\n2-Ver productos registrados\n3-Eliminar artículo\n4-Continuar sesión previa\n5-Salir y guardar datos\n")
         try:
          opc= int(input("Ingresa una opción: "))
          if opc==1:
@@ -15,7 +16,12 @@ def main():
             prodregistrados= ingresar_producto(prodregistrados,nomb,cat,preclp)
 
          elif opc==2:
-            print(f"Productos registrados: {prodregistrados}")
+            if prodregistrados == []:
+               print("No hay artículos para mostrar")
+            else:
+             print("Lista de productos registrados: \n")
+             for i in enumerate(prodregistrados):
+                print(i)
          elif opc==3:
             if prodregistrados ==[]:
                print("No hay artículos para eliminar")
@@ -24,11 +30,17 @@ def main():
                for b, i in enumerate(prodregistrados):
                   print(f"{b} - {i["nombre"]}, {i["categoria"]}")
                ind= int(input("Ingresa el índice de lo que deseas eliminar: "))
-               elim= ()
+               prodregistrados= eliminar_producto(prodregistrados,ind)
          elif opc==4:
-            print("")
+           prodregistrados= cargar_datos()
+           if prodregistrados == []:
+              print("No se encontraron archivos anteriores para cargar")
+           else:
+              print("Se han cargado los archivos")
          elif opc==5:
-            print()
+            print("Finalizando sesión")
+            guardar_datos(prodregistrados)
+            break
          else:
             print("Opción fuera del rango")
         except ValueError:
